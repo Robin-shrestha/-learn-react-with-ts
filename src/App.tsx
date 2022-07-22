@@ -1,44 +1,39 @@
-import React, { useState } from "react";
-import { SomeContextProvider } from "./components/contexts";
-import { ClassCounter, FunctionCounter } from "./pages";
+import React from "react";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
-export const myContext = React.createContext<any>({});
+import { BaseLayout } from "./Layout";
+import { Error } from "./pages/Error";
+import { TeamsPages } from "./pages/teams";
+
 function App() {
-  const [showclassComp, setShowclassComp] = useState(true);
-  const [showFunctionComp, setShowFunctionComp] = useState(true);
-
   return (
-    <SomeContextProvider>
-      <div>
-        <div style={{ padding: 25 }}>
-          {showclassComp && <ClassCounter />}
-
-          <div>
-            <button
-              onClick={() => {
-                setShowclassComp((curr) => !curr);
-              }}
-            >
-              toggle class comp
-            </button>
-          </div>
-        </div>
-        <div style={{ padding: 25 }}>
-          {showFunctionComp && <FunctionCounter />}
-
-          <div>
-            <button
-              onClick={() => {
-                setShowFunctionComp((curr) => !curr);
-              }}
-            >
-              toggle function comp
-            </button>
-          </div>
-        </div>
-      </div>
-    </SomeContextProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<BaseLayout />}>
+          <Route index element={<div>Home</div>} />
+          <Route path="about" element={<div>about</div>} />
+          <Route path="teams/*" element={<TeamsPages />} />
+          {/* <TeamsPages /> */}
+        </Route>
+        <Route path="*" element={<Error />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
+const Navbar = () => {
+  return (
+    <ul>
+      <li>
+        <Link to="/">Home</Link>
+      </li>
+      <li>
+        <Link to="/about">About</Link>
+      </li>
+      <li>
+        <Link to="/teams">Teams</Link>
+      </li>
+    </ul>
+  );
+};
 export default App;
