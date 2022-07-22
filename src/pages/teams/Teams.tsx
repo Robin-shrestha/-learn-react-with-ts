@@ -9,10 +9,6 @@ export const Teams = (): JSX.Element => {
 
   return (
     <div>
-      <div style={{ display: "flex", gap: "24px" }}>
-        <Link to="/teams/add">Add</Link>
-        <Link to="/teams/standings">Standings</Link>
-      </div>
       Teams List page
       {teams.map((item) => (
         <div key={item}>
