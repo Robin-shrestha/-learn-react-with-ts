@@ -1,21 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { SomeContextProvider } from "./components/contexts";
-import { useWindowDimension } from "./hooks";
 import { BasicLayout } from "./layout/BasicLayout";
-import { ClassCounter, FunctionCounter } from "./pages";
 import { AddPatients, PatientDetail, PatientsList } from "./pages/Patients";
 
 // useLocation,useParams, useNavigate, useSearchParams, useNavigateTypes
 export const myContext = React.createContext<any>({});
 function App() {
-  // const { height, width } = useWindowDimension();
-  // console.log({ width, height });
-  // const [showclassComp, setShowclassComp] = useState(true);
-  // const [showFunctionComp, setShowFunctionComp] = useState(true);
-
   return (
     <>
       <BrowserRouter>
@@ -35,24 +25,5 @@ function App() {
     </>
   );
 }
-const Navbar = () => {
-  const Styling = (prop: { isActive: boolean }) => {
-    const { isActive } = prop;
-    return { color: isActive ? "red" : "blue" };
-  };
-  return (
-    <div style={{ display: "flex", gap: "15px" }}>
-      <NavLink style={Styling} to={"/"}>
-        Home
-      </NavLink>
-      <NavLink style={Styling} to={"/about"}>
-        About
-      </NavLink>
-      <NavLink style={Styling} to={"/patients"}>
-        Patients
-      </NavLink>
-    </div>
-  );
-};
 
 export default App;
