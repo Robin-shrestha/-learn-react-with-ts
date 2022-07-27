@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { BasicLayout } from "./layout/BasicLayout";
 import { AddPatients, PatientDetail, PatientsList } from "./pages/Patients";
 
-// useLocation,useParams, useNavigate, useSearchParams, useNavigateTypes
 export const myContext = React.createContext<any>({});
 function App() {
   return (
